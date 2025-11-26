@@ -2,6 +2,8 @@
 
 Proyecto Django para el segundo parcial de Programación IV. Incluye registro/login, dashboard de alumnos con PDF por email, scraping educativo (Wikipedia) y envío de resultados por correo usando la API de Brevo.
 
+[Deployment en Render](https://segundoparcialonostre.onrender.com)
+
 ## Requisitos
 - Python 3.10+
 - pip

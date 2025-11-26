@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Scraper{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h1 class="h5 mb-3">Scraping educativo</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.keyword.label_tag }}
+                        {{ form.keyword }}
+                    </div>
+                    <button class="btn btn-primary" name="action" value="search">Buscar</button>
+                </form>
+            </div>
+        </div>
+        {% if results %}
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h2 class="h6">Resultados</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Extracto</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in results %}
+                                <tr>
+                                    <td>{{ item.texto }}</td>
+                                    <td>{{ item.autor }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="keyword" value="{{ form.cleaned_data.keyword }}">
+                <button class="btn btn-outline-primary" name="action" value="send">Enviar resultados a mi correo</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
